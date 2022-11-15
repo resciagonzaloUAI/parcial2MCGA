@@ -4,7 +4,7 @@ import styles from './form.module.css';
 import Input from '../../../Components/Compartido/Input';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from "react-hook-form";
-import { getByIdProducts, postProducts, editProducts, getProducts } from '../../../redux/products/thunks';
+import { getByIdProducts, postProducts, editProducts } from '../../../redux/products/thunks';
 
 
 const Form = (props) => {

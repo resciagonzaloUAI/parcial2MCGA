@@ -25,14 +25,15 @@ import {
         if(response.status !== 200 ){
           dispatch(getProductsError(json.toString()))
         }else {
-          dispatch(getProductsSuccess(json.data));
+          dispatch(getProductsSuccess(json));
         }
       } catch (error) {
         dispatch(getProductsError(error.toString()));
       }
     };
   };
-  
+
+
   export const getByIdProducts = (id) => {
     return async (dispatch) => {
       dispatch(getByIdProductsPending());
@@ -58,10 +59,11 @@ import {
           method: 'DELETE'
         });
         const json = await response.json();
-        if(response.status !== 202 ){
+        if(response.status !== 200 ){
           dispatch(deleteProductsError(json.toString()))
         }else {
-          dispatch(deleteProductsSuccess(json));
+          alert("Producto eliminado");
+          window.location.reload();
         }
       } catch (error) {
         dispatch(deleteProductsError(error.toString()));
