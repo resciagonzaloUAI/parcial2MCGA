@@ -25,7 +25,6 @@ const Form = (props) => {
 
 
   useEffect(() => {
-    console.log(id);
     if (id) {
       dispatch(getByIdProducts(id));
     }
@@ -48,12 +47,9 @@ const Form = (props) => {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/products`, {
         method: 'GET'
       });
-      console.log(response);
       const products = await response.json();
-      console.log(products);
       const id = (Math.max.apply(Math, products.map(function(o) { return o.id || 0; })))+1;
       
-      console.log(id)
       dispatch(postProducts(id, event.name, event.description, event.price, event.stock));
       window.location.reload();
   

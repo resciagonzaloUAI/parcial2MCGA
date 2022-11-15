@@ -38,7 +38,6 @@ import {
       dispatch(getByIdProductsPending());
       try {
         const response = await fetch(`${process.env.REACT_APP_API_URL}/products/${id}`);
-        console.log(response)
         const json = await response.json();
         if(response.status !== 200 ){
           dispatch(getByIdProductsError(json.msg.toString()))
@@ -91,13 +90,10 @@ import {
           const json = await response.json();
           if (response.status === 201) {
             dispatch(postProductsSuccess(json));
-            console.log('Product added');
           } else {
-            console.log('Product could not be Added.');
           }
         } catch (error) {
           dispatch(postProductsError(error.toString()));
-          console.log('Product could not be Added.');
         }
     };
   };
@@ -122,13 +118,10 @@ import {
           const json = await response.json();
           if (response.status === 202) {
             dispatch(editProductsSuccess(json));
-            console.log('Producto actualizado');
           } else {
-            console.log('No se pudo actualizar el producto.');
           }
         } catch (error) {
           dispatch(editProductsError(error.toString()));
-          console.log('No se pudo actualizar el producto.');
         }
     };
   };

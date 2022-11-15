@@ -14,9 +14,7 @@ const Products = (props) => {
     async function fetchProducts() {
       try {
         const response = await fetch(`${process.env.REACT_APP_API_URL}/products/`);
-        console.log(response);
         const json = await response.json();
-        console.log(json);
         setProducts(json);
       } catch (error) {
         alert('Could not GET Products.', error);
