@@ -4,7 +4,7 @@ import styles from './form.module.css';
 import Input from '../../../Components/Compartido/Input';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from "react-hook-form";
-import { getByIdProducts, postProducts, editProducts } from '../../../redux/products/thunks';
+import { getByIdProducts, postProducts, editProducts, getProducts } from '../../../redux/products/thunks';
 
 
 const Form = (props) => {
@@ -20,11 +20,13 @@ const Form = (props) => {
   const {
     isPending,
     item: product,
+    list: productList,
     error,
   } = useSelector((state) => state.products);
 
 
   useEffect(() => {
+    dispatch(getProducts());
     if (id) {
       dispatch(getByIdProducts(id));
     }
@@ -44,12 +46,8 @@ const Form = (props) => {
 
   const onSubmit = async (event) => {
     if (formMode) {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/products`, {
-        method: 'GET'
-      });
-      const products = await response.json();
-      const id = (Math.max.apply(Math, products.map(function(o) { return o.id || 0; })))+1;
-      
+
+      const id = (Math.max.apply(Math, productList.map(function(o) { return o.id || 0; })))+1;
       dispatch(postProducts(id, event.name, event.description, event.price, event.stock));
       window.location.reload();
   

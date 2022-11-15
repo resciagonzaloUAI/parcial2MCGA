@@ -90,8 +90,8 @@ import {
             })
           });
           const json = await response.json();
-          if (response.status === 201) {
-            dispatch(postProductsSuccess(json));
+          if (response.status === 200) {
+          alert("Producto agregado");
           } else {
           }
         } catch (error) {
